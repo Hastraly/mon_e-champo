@@ -1,13 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New chat</title>
+
+    <!-- Icône principale -->
+    <link rel="icon" type="image/png" href="/icon-192.png" />
+
+    <!-- ✅ Ajoute ton manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- ✅ Couleur du thème pour Android -->
+    <meta name="theme-color" content="#4f46e5" />
+
+    <title>Mon E-Champo</title>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ✅ Enregistrement du service worker -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(() => console.log("✅ Service Worker enregistré"))
+            .catch((err) => console.error("❌ Erreur SW", err));
+        });
+      }
+    </script>
   </body>
 </html>
