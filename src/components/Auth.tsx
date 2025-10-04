@@ -45,7 +45,7 @@ export default function Auth() {
               Mon E-Champo
             </h1>
             <p className="text-slate-600">
-              Organisez votre temps avec élégance
+              Pensez pour des lycéens, par un lycéen
             </p>
           </div>
 
