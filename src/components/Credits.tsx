@@ -49,9 +49,7 @@ export default function Credits() {
               Remerciements
             </h3>
             <p className="text-slate-600 leading-relaxed">
-              Un grand merci à <span className="font-bold text-blue-600">Hastaly</span> pour avoir
-              créé cette application d'emploi du temps et de gestion de tâches. Son travail acharné
-              et sa passion pour le développement web ont permis de créer cet outil intuitif et élégant.
+              En espérant vous avoir aidé à mieux organiser votre vie avec cette application d'emploi du temps et de gestion de tâches. Son travail acharné et sa passion pour le développement web ont permis de créer cet outil intuitif et élégant.
             </p>
           </div>
 
