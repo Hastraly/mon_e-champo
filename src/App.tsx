@@ -142,7 +142,7 @@ function AppContent() {
                   </li>
                    <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">3.</span>
-                    <span>Cliquez sur une case de l'emploi du temps pour ajouter un cours</span>
+                    <span>Personnalisez la date et l'heure du cours comme bon vous semble</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">4.</span>
