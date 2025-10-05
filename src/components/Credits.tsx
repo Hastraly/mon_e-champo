@@ -78,7 +78,7 @@ export default function Credits() {
           <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl p-6 text-white text-center space-y-3">
             <Heart className="w-8 h-8 mx-auto" />
             <p className="font-medium">
-              Fait avec amour pour vous aider à mieux organiser votre vie
+              Application de réussite n°1
             </p>
             <p className="text-sm text-blue-100">
               Version 1.0.0 - 2025
