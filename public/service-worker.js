@@ -1,7 +1,7 @@
-self.addEventListener("install", () => {
-  console.log("📦 Service Worker installé !");
+self.addEventListener('install', () => {
+  console.log('Service Worker installed');
 });
 
-self.addEventListener("fetch", () => {
-  // Tu pourras gérer ici du cache plus tard
+self.addEventListener('fetch', (event) => {
+  event.respondWith(fetch(event.request).catch(() => new Response('Offline')));
 });
