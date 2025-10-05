@@ -36,8 +36,6 @@ export default function GradesSimulator() {
         user_id: user.id,
         name: sub.name,
         color: sub.color,
-        subject_coefficient: sub.coefficient,
-        is_default: true,
       }));
 
       await supabase.from('subjects').insert(subjectsToInsert);
@@ -54,11 +52,16 @@ export default function GradesSimulator() {
   };
 
   const loadGrades = async () => {
-    const { data } = await supabase
-      .from('grades')
-      .select('*')
-      .order('date', { ascending: false });
-    if (data) setGrades(data);
+    try {
+      const { data } = await supabase
+        .from('grades')
+        .select('*')
+        .order('date', { ascending: false });
+      if (data) setGrades(data);
+    } catch (error) {
+      console.log('Grades table not yet created');
+      setGrades([]);
+    }
   };
 
   const handleAddGrade = async () => {
@@ -67,23 +70,32 @@ export default function GradesSimulator() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    await supabase.from('grades').insert({
-      user_id: user.id,
-      subject_id: selectedSubjectId,
-      grade_value: parseFloat(gradeValue),
-      grade_max: parseFloat(gradeMax),
-      coefficient: parseFloat(gradeCoefficient),
-      description: gradeDescription,
-      date: gradeDate,
-    });
+    try {
+      const { error } = await supabase.from('grades').insert({
+        user_id: user.id,
+        subject_id: selectedSubjectId,
+        grade_value: parseFloat(gradeValue),
+        grade_max: parseFloat(gradeMax),
+        coefficient: parseFloat(gradeCoefficient),
+        description: gradeDescription,
+        date: gradeDate,
+      });
 
-    setGradeValue('');
-    setGradeMax('20');
-    setGradeCoefficient('1');
-    setGradeDescription('');
-    setGradeDate(new Date().toISOString().split('T')[0]);
-    setShowAddGradeModal(false);
-    loadGrades();
+      if (error) {
+        alert('La fonctionnalité des notes n\'est pas encore activée. Veuillez contacter l\'administrateur.');
+        return;
+      }
+
+      setGradeValue('');
+      setGradeMax('20');
+      setGradeCoefficient('1');
+      setGradeDescription('');
+      setGradeDate(new Date().toISOString().split('T')[0]);
+      setShowAddGradeModal(false);
+      loadGrades();
+    } catch (error) {
+      alert('La fonctionnalité des notes n\'est pas encore activée.');
+    }
   };
 
   const handleDeleteGrade = async (id: string) => {
@@ -244,27 +256,27 @@ export default function GradesSimulator() {
       </div>
 
       {showAddGradeModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full space-y-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50 overflow-y-auto">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 max-w-md w-full space-y-3 sm:space-y-4 my-auto">
             <div className="flex justify-between items-center">
-              <h3 className="text-xl font-bold text-slate-800">Ajouter une note</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-800">Ajouter une note</h3>
               <button
                 onClick={() => setShowAddGradeModal(false)}
                 className="text-slate-400 hover:text-slate-600 transition-colors"
               >
-                <Plus className="w-6 h-6 rotate-45" />
+                <Plus className="w-5 h-5 sm:w-6 sm:h-6 rotate-45" />
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Matière
                 </label>
                 <select
                   value={selectedSubjectId}
                   onChange={(e) => setSelectedSubjectId(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 >
                   {subjects.map(subject => (
                     <option key={subject.id} value={subject.id}>
@@ -274,9 +286,9 @@ export default function GradesSimulator() {
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                     Note obtenue
                   </label>
                   <input
@@ -285,18 +297,18 @@ export default function GradesSimulator() {
                     min="0"
                     value={gradeValue}
                     onChange={(e) => setGradeValue(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     placeholder="15"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                     Note sur
                   </label>
                   <select
                     value={gradeMax}
                     onChange={(e) => setGradeMax(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   >
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -312,7 +324,7 @@ export default function GradesSimulator() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Coefficient
                 </label>
                 <input
@@ -321,40 +333,40 @@ export default function GradesSimulator() {
                   min="0.5"
                   value={gradeCoefficient}
                   onChange={(e) => setGradeCoefficient(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   placeholder="1"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Description (optionnel)
                 </label>
                 <input
                   type="text"
                   value={gradeDescription}
                   onChange={(e) => setGradeDescription(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   placeholder="Ex: Contrôle chapitre 3"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Date
                 </label>
                 <input
                   type="date"
                   value={gradeDate}
                   onChange={(e) => setGradeDate(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
 
               <button
                 onClick={handleAddGrade}
                 disabled={!selectedSubjectId || !gradeValue || !gradeMax}
-                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="w-full py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg sm:rounded-xl font-medium hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 Ajouter la note
               </button>

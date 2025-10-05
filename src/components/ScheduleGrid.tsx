@@ -269,27 +269,27 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
       </div>
 
       {showAddModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full space-y-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50 overflow-y-auto">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 max-w-md w-full space-y-3 sm:space-y-4 my-auto">
             <div className="flex justify-between items-center">
-              <h3 className="text-xl font-bold text-slate-800">Ajouter un cours</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-800">Ajouter un cours</h3>
               <button
                 onClick={() => setShowAddModal(false)}
                 className="text-slate-400 hover:text-slate-600 transition-colors"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Matière
                 </label>
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   {subjects.map((subject) => (
                     <option key={subject.id} value={subject.id}>
@@ -301,31 +301,31 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                     Heure de début
                   </label>
                   <input
                     type="time"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                     Heure de fin
                   </label>
                   <input
                     type="time"
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Semaine(s)
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -338,7 +338,7 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
                       key={option.value}
                       type="button"
                       onClick={() => setWeekType(option.value as any)}
-                      className={`py-2 px-3 rounded-xl border-2 font-medium transition-all ${
+                      className={`py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm rounded-lg sm:rounded-xl border-2 font-medium transition-all ${
                         weekType === option.value
                           ? 'bg-blue-500 text-white border-blue-500'
                           : 'border-slate-200 text-slate-600 hover:border-slate-300'
@@ -351,7 +351,7 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1.5 sm:mb-2">
                   Récurrence
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -379,7 +379,7 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
               <button
                 onClick={handleAddEntry}
                 disabled={!selectedSubject || !startTime || !endTime}
-                className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-medium hover:from-blue-600 hover:to-cyan-600 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="w-full py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg sm:rounded-xl font-medium hover:from-blue-600 hover:to-cyan-600 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 Ajouter le cours
               </button>

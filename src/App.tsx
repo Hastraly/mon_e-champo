@@ -35,11 +35,12 @@ function AppContent() {
         user_id: user.id,
         name: sub.name,
         color: sub.color,
-        subject_coefficient: sub.coefficient,
-        is_default: true,
       }));
 
-      await supabase.from('subjects').insert(subjectsToInsert);
+      const { error } = await supabase.from('subjects').insert(subjectsToInsert);
+      if (!error) {
+        await loadSubjects();
+      }
     }
   };
 
