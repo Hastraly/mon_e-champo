@@ -14,7 +14,7 @@ export default function Credits() {
             Crédits
           </h2>
           <p className="text-slate-600">
-            Cette application a été créée avec passion
+            Cette application a été créée avec passion!
           </p>
         </div>
 
