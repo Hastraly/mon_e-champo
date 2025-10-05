@@ -134,7 +134,7 @@ function AppContent() {
                 <ul className="space-y-2 text-sm text-slate-600">
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">1.</span>
-                    <span>Créez vos matières avec des couleurs personnalisées</span>
+                    <span>Créez vos matières avec une superbe palette de couelur </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">2.</span>
