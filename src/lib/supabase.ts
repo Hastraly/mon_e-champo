@@ -10,6 +10,20 @@ export type Subject = {
   user_id: string;
   name: string;
   color: string;
+  is_default?: boolean;
+  subject_coefficient?: number;
+  created_at: string;
+};
+
+export type Grade = {
+  id: string;
+  user_id: string;
+  subject_id: string;
+  grade_value: number;
+  grade_max: number;
+  coefficient: number;
+  description: string;
+  date: string;
   created_at: string;
 };
 

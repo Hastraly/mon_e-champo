@@ -4,13 +4,15 @@ import Auth from './components/Auth';
 import SubjectManager from './components/SubjectManager';
 import ScheduleGrid from './components/ScheduleGrid';
 import TodoList from './components/TodoList';
+import GradesSimulator from './components/GradesSimulator';
+import Credits from './components/Credits';
 import { supabase, Subject } from './lib/supabase';
-import { Calendar, ListTodo, LogOut, BookOpen } from 'lucide-react';
+import { Calendar, ListTodo, LogOut, BookOpen, Calculator, Heart } from 'lucide-react';
 
 function AppContent() {
   const { user, loading, signOut } = useAuth();
   const [subjects, setSubjects] = useState<Subject[]>([]);
-  const [activeTab, setActiveTab] = useState<'schedule' | 'todos'>('schedule');
+  const [activeTab, setActiveTab] = useState<'schedule' | 'todos' | 'grades' | 'credits'>('schedule');
 
   useEffect(() => {
     if (user) {
@@ -49,7 +51,7 @@ function AppContent() {
                   <Calendar className="w-6 h-6 text-white" />
                 </div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                  Mon E-Champo
+                  Schedule Master
                 </h1>
               </div>
             </div>
@@ -72,10 +74,10 @@ function AppContent() {
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-4 mb-6">
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
           <button
             onClick={() => setActiveTab('schedule')}
-            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
+            className={`flex-shrink-0 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
               activeTab === 'schedule'
                 ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
                 : 'bg-white text-slate-600 hover:bg-slate-50 border-2 border-slate-200'
@@ -86,7 +88,7 @@ function AppContent() {
           </button>
           <button
             onClick={() => setActiveTab('todos')}
-            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
+            className={`flex-shrink-0 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
               activeTab === 'todos'
                 ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg'
                 : 'bg-white text-slate-600 hover:bg-slate-50 border-2 border-slate-200'
@@ -95,9 +97,31 @@ function AppContent() {
             <ListTodo className="w-5 h-5" />
             <span>To-Do List</span>
           </button>
+          <button
+            onClick={() => setActiveTab('grades')}
+            className={`flex-shrink-0 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
+              activeTab === 'grades'
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                : 'bg-white text-slate-600 hover:bg-slate-50 border-2 border-slate-200'
+            }`}
+          >
+            <Calculator className="w-5 h-5" />
+            <span>Notes</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('credits')}
+            className={`flex-shrink-0 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
+              activeTab === 'credits'
+                ? 'bg-gradient-to-r from-rose-500 to-orange-500 text-white shadow-lg'
+                : 'bg-white text-slate-600 hover:bg-slate-50 border-2 border-slate-200'
+            }`}
+          >
+            <Heart className="w-5 h-5" />
+            <span>Crédits</span>
+          </button>
         </div>
 
-        {activeTab === 'schedule' ? (
+        {activeTab === 'schedule' && (
           <div className="grid lg:grid-cols-3 gap-6">
             <div className="lg:col-span-1 space-y-6">
               <SubjectManager subjects={subjects} onRefresh={loadSubjects} />
@@ -118,11 +142,11 @@ function AppContent() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">3.</span>
-                    <span>Choisissez la durée (1h, 2h ou 3h)</span>
+                    <span>Glissez-déposez les cours pour les déplacer</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">4.</span>
-                    <span>Survolez un cours pour le supprimer</span>
+                    <span>Filtrez par semaine 1 ou 2</span>
                   </li>
                 </ul>
               </div>
@@ -132,11 +156,17 @@ function AppContent() {
               <ScheduleGrid subjects={subjects} onRefresh={loadSubjects} />
             </div>
           </div>
-        ) : (
+        )}
+
+        {activeTab === 'todos' && (
           <div className="max-w-3xl mx-auto">
             <TodoList />
           </div>
         )}
+
+        {activeTab === 'grades' && <GradesSimulator />}
+
+        {activeTab === 'credits' && <Credits />}
       </main>
 
       <footer className="mt-16 pb-8 text-center text-slate-500 text-sm">

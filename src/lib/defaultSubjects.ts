@@ -1,0 +1,16 @@
+export const DEFAULT_SUBJECTS = [
+  { name: 'Mathématiques', color: '#FF6B9D', coefficient: 3.0 },
+  { name: 'Français', color: '#FF8C42', coefficient: 3.0 },
+  { name: 'Anglais', color: '#45B7D1', coefficient: 2.0 },
+  { name: 'Histoire-Géographie', color: '#FFA94D', coefficient: 2.0 },
+  { name: 'Sciences Physiques', color: '#4ECDC4', coefficient: 2.5 },
+  { name: 'SVT', color: '#6BCB77', coefficient: 2.5 },
+  { name: 'EPS', color: '#FFD93D', coefficient: 1.0 },
+  { name: 'Arts Plastiques', color: '#FFABAB', coefficient: 1.0 },
+  { name: 'Technologie', color: '#5DADE2', coefficient: 1.5 },
+  { name: 'Espagnol', color: '#FF9AA2', coefficient: 2.0 },
+  { name: 'Allemand', color: '#A8DADC', coefficient: 2.0 },
+  { name: 'Philosophie', color: '#B4C7A3', coefficient: 2.0 },
+  { name: 'Économie', color: '#36CFC9', coefficient: 2.0 },
+  { name: 'Informatique', color: '#45B384', coefficient: 2.0 },
+];
