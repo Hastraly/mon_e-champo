@@ -36,8 +36,8 @@ export default function Credits() {
                   H
                 </div>
                 <div>
-                  <p className="font-bold text-slate-800 text-lg">Hastaly</p>
-                  <p className="text-sm text-slate-600">Développeur Full-Stack</p>
+                  <p className="font-bold text-slate-800 text-lg">Kélian</p>
+                  <p className="text-sm text-slate-600">Développeur Full-Stack à ses heures perdues</p>
                 </div>
               </div>
             </div>
