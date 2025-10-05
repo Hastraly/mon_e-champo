@@ -144,7 +144,7 @@ export default function GradesSimulator() {
               Simulation de Notes
             </h2>
             <p className="text-purple-100 mt-1">
-              Calculez vos moyennes et suivez vos performances
+              Coming Soon ^^
             </p>
           </div>
           {generalAverage !== null && (
