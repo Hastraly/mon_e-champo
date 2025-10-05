@@ -3,18 +3,18 @@ import { Heart, Code, Coffee, Github } from 'lucide-react';
 export default function Credits() {
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
-        <div className="text-center space-y-3">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
+        <div className="text-center space-y-2 sm:space-y-3">
           <div className="flex justify-center">
-            <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-4 rounded-2xl">
-              <Heart className="w-12 h-12 text-white" />
+            <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+              <Heart className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
             </div>
           </div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Crédits
           </h2>
-          <p className="text-slate-600">
-            Cette application a été créée avec passion!
+          <p className="text-sm sm:text-base text-slate-600">
+            Cette application a été créée avec passion
           </p>
         </div>
 

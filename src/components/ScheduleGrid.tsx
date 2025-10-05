@@ -148,21 +148,21 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-3">
+    <div className="space-y-3 sm:space-y-4">
+      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
         <button
           onClick={() => setCurrentWeekFilter('all')}
-          className={`px-4 py-2 rounded-xl font-medium transition-all ${
+          className={`flex-shrink-0 px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-sm sm:text-base font-medium transition-all ${
             currentWeekFilter === 'all'
               ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
               : 'bg-white text-slate-600 border-2 border-slate-200 hover:bg-slate-50'
           }`}
         >
-          Toutes les semaines
+          Toutes
         </button>
         <button
           onClick={() => setCurrentWeekFilter('week1')}
-          className={`px-4 py-2 rounded-xl font-medium transition-all ${
+          className={`flex-shrink-0 px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-sm sm:text-base font-medium transition-all ${
             currentWeekFilter === 'week1'
               ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
               : 'bg-white text-slate-600 border-2 border-slate-200 hover:bg-slate-50'
@@ -172,7 +172,7 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
         </button>
         <button
           onClick={() => setCurrentWeekFilter('week2')}
-          className={`px-4 py-2 rounded-xl font-medium transition-all ${
+          className={`flex-shrink-0 px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-sm sm:text-base font-medium transition-all ${
             currentWeekFilter === 'week2'
               ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
               : 'bg-white text-slate-600 border-2 border-slate-200 hover:bg-slate-50'
@@ -182,8 +182,8 @@ export default function ScheduleGrid({ subjects, onRefresh }: ScheduleGridProps)
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg p-6 overflow-x-auto">
-        <div className="min-w-[800px]">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-2 sm:p-4 lg:p-6 overflow-x-auto">
+        <div className="min-w-[600px] sm:min-w-[800px]">
           <div className="grid grid-cols-8 gap-2">
             <div className="font-medium text-slate-700"></div>
             {DAYS.map((day) => (

@@ -135,60 +135,60 @@ export default function GradesSimulator() {
   const generalAverage = calculateGeneralAverage();
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg p-6 text-white">
-        <div className="flex items-center justify-between">
+    <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
+      <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 text-white">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Calculator className="w-8 h-8" />
+            <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+              <Calculator className="w-6 h-6 sm:w-8 sm:h-8" />
               Simulation de Notes
             </h2>
-            <p className="text-purple-100 mt-1">
-              Coming Soon ^^
+            <p className="text-purple-100 mt-1 text-sm sm:text-base">
+              Calculez vos moyennes et suivez vos performances
             </p>
           </div>
           {generalAverage !== null && (
-            <div className="text-center bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4">
-              <div className="text-sm font-medium text-purple-100">Moyenne Générale</div>
-              <div className="text-4xl font-bold mt-1">
+            <div className="text-center bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl px-4 sm:px-6 py-3 sm:py-4">
+              <div className="text-xs sm:text-sm font-medium text-purple-100">Moyenne Générale</div>
+              <div className="text-3xl sm:text-4xl font-bold mt-1">
                 {generalAverage.toFixed(2)}
-                <span className="text-2xl">/20</span>
+                <span className="text-xl sm:text-2xl">/20</span>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
         {subjects.map(subject => {
           const subjectGrades = grades.filter(g => g.subject_id === subject.id);
           const average = calculateSubjectAverage(subject.id);
 
           return (
-            <div key={subject.id} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div key={subject.id} className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
               <div
-                className="p-4 text-white"
+                className="p-3 sm:p-4 text-white"
                 style={{ backgroundColor: subject.color }}
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-bold text-lg">{subject.name}</h3>
-                    <p className="text-sm opacity-90">
-                      Coefficient: {subject.subject_coefficient || 1}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-base sm:text-lg truncate">{subject.name}</h3>
+                    <p className="text-xs sm:text-sm opacity-90">
+                      Coef: {subject.subject_coefficient || 1}
                     </p>
                   </div>
                   {average !== null && (
-                    <div className="text-center bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                      <div className="text-2xl font-bold">
+                    <div className="text-center bg-white/20 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 flex-shrink-0">
+                      <div className="text-xl sm:text-2xl font-bold">
                         {average.toFixed(2)}
-                        <span className="text-sm">/20</span>
+                        <span className="text-xs sm:text-sm">/20</span>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="p-4 space-y-3">
+              <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
                 {subjectGrades.length === 0 ? (
                   <p className="text-center text-slate-500 py-4 text-sm">
                     Aucune note pour cette matière
