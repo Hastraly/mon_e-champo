@@ -33,7 +33,7 @@ export default function Credits() {
             <div className="bg-white rounded-lg p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  H
+                  K
                 </div>
                 <div>
                   <p className="font-bold text-slate-800 text-lg">Kélian </p>
