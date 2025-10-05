@@ -134,18 +134,22 @@ function AppContent() {
                 <ul className="space-y-2 text-sm text-slate-600">
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">1.</span>
-                    <span>Créez vos matières avec une superbe palette de couelur </span>
+                    <span>Créez vos matières avec une superbe palette de couleur </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">2.</span>
                     <span>Cliquez sur une case de l'emploi du temps pour ajouter un cours</span>
                   </li>
-                  <li className="flex items-start gap-2">
+                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">3.</span>
-                    <span>Glissez-déposez les cours pour les déplacer</span>
+                    <span>Cliquez sur une case de l'emploi du temps pour ajouter un cours</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-600 font-bold">4.</span>
+                    <span>Glissez-déposez les cours pour les déplacer</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">5.</span>
                     <span>Filtrez par semaine 1 ou 2</span>
                   </li>
                 </ul>
